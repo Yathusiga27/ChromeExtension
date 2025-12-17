@@ -1,69 +1,234 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AI Summary Settings</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      h1 {
-        color: #4285f4;
-      }
-      .form-group {
-        margin-bottom: 20px;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-      }
-      input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-      button {
-        background-color: #4285f4;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #3367d6;
-      }
-      .success-message {
-        color: green;
-        margin-top: 10px;
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>AI Summary Settings</h1>
-
+<head>
+  <meta charset="utf-8">
+  <title>Settings - AI Summarizer</title>
+  <style>
+    body {
+      width: 500px;
+      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      margin: 0;
+      min-height: 100vh;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      margin-top: 0;
+      color: #2d3748;
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #4a5568;
+      font-size: 15px;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .instructions {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .instructions h3 {
+      margin-top: 0;
+      color: #2d3748;
+      font-size: 16px;
+    }
+    
+    .instructions ol {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+    
+    .instructions li {
+      margin-bottom: 8px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+    
+    .instructions a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .instructions a:hover {
+      text-decoration: underline;
+    }
+    
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+    }
+    
+    .message {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .success {
+      background: #c6f6d5;
+      color: #22543d;
+      border: 1px solid #9ae6b4;
+    }
+    
+    .error {
+      background: #fed7d7;
+      color: #742a2a;
+      border: 1px solid #fc8181;
+    }
+    
+    .api-key-display {
+      background: #f8fafc;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 13px;
+      color: #4a5568;
+      margin-top: 10px;
+      word-break: break-all;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .api-key-display span {
+      color: #718096;
+      font-size: 12px;
+    }
+    
+    .help-text {
+      font-size: 13px;
+      color: #718096;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    
+    .security-note {
+      background: #fffaf0;
+      border: 1px solid #feebc8;
+      border-radius: 6px;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 13px;
+      color: #744210;
+    }
+    
+    .test-section {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid #e2e8f0;
+    }
+    
+    .test-button {
+      background: #48bb78;
+      margin-top: 10px;
+    }
+    
+    .test-button:hover {
+      background: #38a169;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⚙️ Extension Settings</h1>
+    
+    <div class="instructions">
+      <h3>How to get your free API key:</h3>
+      <ol>
+        <li>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a></li>
+        <li>Sign in with your Google account</li>
+        <li>Click "Create API Key" in the left sidebar</li>
+        <li>Select "Create API key in new project"</li>
+        <li>Copy the generated API key (starts with "AIza")</li>
+        <li>Paste it in the field below and save</li>
+      </ol>
+    </div>
+    
     <div class="form-group">
       <label for="api-key">Gemini API Key:</label>
-      <input type="text" id="api-key" placeholder="Enter your Gemini API key" />
-      <p>
-        You can get an API key from
-        <a href="https://makersuite.google.com/app/apikey" target="_blank"
-          >Google AI Studio</a
-        >
-      </p>
+      <input type="text" id="api-key" placeholder="AIzaSyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+      <div class="help-text">
+        Your API key is stored locally in your browser and only sent to Google's servers for summarization.
+      </div>
+      
+      <div id="current-key" style="display: none;">
+        <div class="api-key-display">
+          <span>Current key:</span> <span id="key-preview"></span>
+        </div>
+      </div>
     </div>
-
-    <button id="save-button">Save Settings</button>
-    <p id="success-message" class="success-message">
-      Settings saved successfully!
-    </p>
-
-    <script src="options.js"></script>
-  </body>
+    
+    <div class="security-note">
+      🔒 <strong>Security Note:</strong> API keys are stored securely in Chrome's sync storage. 
+      They are only used to communicate directly with Google's Gemini API.
+    </div>
+    
+    <button id="save-btn">💾 Save API Key</button>
+    
+    <div class="test-section">
+      <button id="test-btn" class="test-button">🔍 Test API Connection</button>
+      <div id="test-result" class="message"></div>
+    </div>
+    
+    <div id="message" class="message"></div>
+  </div>
+  
+  <script src="options.js"></script>
+</body>
 </html>
